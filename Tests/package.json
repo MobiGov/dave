@@ -1,9 +1,9 @@
 {
-  "name": "nodejs-functionapp-tests",
+  "name": "dave",
   "version": "0.0.0",
-  "description": "nodejs-functionapp-tests",
+  "description": "distributed analytical verification environment",
   "author": {
-    "name": "nijoy"
+    "name": "David Daniel"
   },
   "dependencies": {
     "gulp": "^3.9.1",
