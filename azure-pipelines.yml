@@ -25,12 +25,12 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(Build.SourcesDirectory)/api'
+    workingDir: 'api'
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run-script build'
-    workingDir: '$(Build.SourcesDirectory)/api'
+    workingDir: 'api'
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib' 
