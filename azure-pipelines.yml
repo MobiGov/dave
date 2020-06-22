@@ -24,6 +24,10 @@ steps:
   displayName: 'Run a multi-line script'
 - task: Npm@1
   inputs:
+    command: 'install'
+    workingDir: '$(Build.SourcesDirectory)/api'
+- task: Npm@1
+  inputs:
     command: 'custom'
     customCommand: 'run-script build'
     workingDir: '$(Build.SourcesDirectory)/api'
