@@ -26,10 +26,10 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'run-script build'
-    workingDir: '$(System.DefaultWorkingDirectory)/api'
+    workingDir: '$(Build.SourcesDirectory)/api'
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/api/lib' 
+    rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib' 
     includeRootFolder: true 
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
