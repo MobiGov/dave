@@ -22,9 +22,21 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run-script build'
+    workingDir: '$(System.DefaultWorkingDirectory)/api'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/api/lib' 
+    includeRootFolder: true 
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
+    replaceExistingArchive: true 
 - task: AzureFunctionApp@1
   inputs:
     azureSubscription: 'Visual Studio Enterprise Subscription(bcf07d27-4fc5-4514-87c3-66a67f62020c)'
     appType: 'functionAppLinux'
     appName: 'mobigov-dave'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
