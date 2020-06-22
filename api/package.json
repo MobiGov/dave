@@ -1,0 +1,27 @@
+{
+  "name": "dave-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel main --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+  },
+  "author": "david.daniel",
+  "license": "ISC",
+  "devDependencies": {
+    "@azure/functions": "1.2.0",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "snowpack": "^2.0.2",
+    "typescript": "^3.9.3"
+  },
+  "dependencies": {}
+}
