@@ -15,17 +15,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo Listing Dirs.
+    dir
+  displayName: 'List folders'
+
 - task: Npm@1
   inputs:
     command: 'install'
     workingDir: 'api'
+    verbose: true
 - task: Npm@1
   inputs:
     command: 'custom'
