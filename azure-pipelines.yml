@@ -36,10 +36,15 @@ steps:
     includeRootFolder: true 
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
-    replaceExistingArchive: true 
+    replaceExistingArchive: true
+- task: AzureResourceGroupDeployment@2
+  inputs:
+    azureSubscription: $(Subscription)
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: mobigov-dave
 - task: AzureFunctionApp@1
   inputs:
-    azureSubscription: 'Visual Studio Enterprise Subscription(bcf07d27-4fc5-4514-87c3-66a67f62020c)'
+    azureSubscription: '$(Subscription)'
     appType: 'functionAppLinux'
     appName: 'mobigov-dave'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
