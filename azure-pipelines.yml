@@ -42,6 +42,7 @@ steps:
     ConnectedServiceName: 'AzureMobigov-conn'
     azureSubscription: $(Subscription)
     action: 'Create Or Update Resource Group'
+    location: 'East US'
     resourceGroupName: mobigov-dave
 - task: AzureFunctionApp@1
   inputs:
