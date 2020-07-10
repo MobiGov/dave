@@ -46,7 +46,7 @@ steps:
     resourceGroupName: mobigov-dave
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.SourcesDirectory)/azure-deploy.json'
-    overrideParameters: '-rgName "$(resourceGroupName)" -rgLocation "$(location)"'
+    overrideParameters: '-rgName "mobigov-dave" -rgLocation "East US"'
 - task: AzureFunctionApp@1
   inputs:
     ConnectedServiceName: 'AzureMobigov-conn'
