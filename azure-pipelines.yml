@@ -8,7 +8,6 @@ trigger:
 
 variables: 
   ## Add this under variables section in the pipeline
-  azureSubscription: Visual Studio Enterprise Subscription
   appName: mobigov-dave
 
 pool:
@@ -39,6 +38,7 @@ steps:
     replaceExistingArchive: true
 - task: AzureResourceGroupDeployment@2
   inputs:
+    ConnectedServiceName: $(Subscription)
     azureSubscription: $(Subscription)
     action: 'Create Or Update Resource Group'
     location: 'East US'
