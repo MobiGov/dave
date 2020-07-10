@@ -39,7 +39,7 @@ steps:
     replaceExistingArchive: true
 - task: AzureResourceGroupDeployment@2
   inputs:
-    ConnectedServiceName: $(Subscription)
+    azureSubscription: $(Subscription)
     action: 'Create Or Update Resource Group'
     location: 'East US'
     resourceGroupName: mobigov-dave
