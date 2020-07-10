@@ -39,13 +39,13 @@ steps:
     replaceExistingArchive: true
 - task: AzureResourceGroupDeployment@2
   inputs:
-    ConnectedServiceName: 'AzureResourceGroup-conn'
+    ConnectedServiceName: 'AzureMobigov-conn'
     azureSubscription: $(Subscription)
     action: 'Create Or Update Resource Group'
     resourceGroupName: mobigov-dave
 - task: AzureFunctionApp@1
   inputs:
-    ConnectedServiceName: 'AzureFunction-conn'
+    ConnectedServiceName: 'AzureMobigov-conn'
     azureSubscription: '$(Subscription)'
     appType: 'functionAppLinux'
     appName: 'mobigov-dave'
