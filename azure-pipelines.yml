@@ -38,7 +38,7 @@ steps:
     replaceExistingArchive: true
 - task: AzureResourceGroupDeployment@2
   inputs:
-    ConnectedServiceName: 'AzureMobigov-conn'
+    ConnectedServiceName: '$(SubscriptionConnection)'
     action: 'Create Or Update Resource Group'
     location: 'East US'
     resourceGroupName: mobigov-dave
@@ -46,7 +46,7 @@ steps:
     csmFile: '$(Build.SourcesDirectory)/azure-deploy.json'
 - task: AzureFunctionApp@1
   inputs:
-    azureSubscription: 'AzureMobigov-conn'
+    azureSubscription: '$(SubscriptionConnection)'
     appType: 'functionAppLinux'
     appName: 'mobigov-dave'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
