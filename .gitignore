@@ -20,6 +20,7 @@ Gitignore template for JavaScript projects
 /tmp
 /out-tsc
 /api/lib
+/api/main/index.js
 
 # Runtime data
 pids
