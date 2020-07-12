@@ -40,10 +40,22 @@ steps:
   inputs:
     ConnectedServiceName: '$(SubscriptionConnection)'
     action: 'Create Or Update Resource Group'
-    location: 'East US'
     resourceGroupName: mobigov-dave
+    location: 'East US'
     templateLocation: 'Linked artifact'
     csmFile: '$(Build.SourcesDirectory)/azure-deploy.json'
+    deploymentMode: 'Incremental'
+- task: AzureResourceManagerTemplateDeployment@3
+  name: "MekaFunction"
+  inputs:
+    ConnectedServiceName: '$(SubscriptionConnection)'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: mobigov-dave
+    location: 'East US'
+    templateLocation: 'Linked artifact'
+    csmFile: "$(Build.SourcesDirectory)/ArmTemplates/FunctionTemplates/Meka/template.json"
+    deploymentMode: 'Incremental'
+    deploymentOutputs: meka_function_arm
 - task: AzureFunctionApp@1
   inputs:
     azureSubscription: '$(SubscriptionConnection)'
