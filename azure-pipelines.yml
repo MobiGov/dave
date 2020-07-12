@@ -26,12 +26,9 @@ steps:
     command: 'custom'
     customCommand: 'run-script build'
     workingDir: 'api'
-- script: |
-    echo Listing Dirs.
-    dir '$(Build.SourcesDirectory)/api/lib'
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib' 
+    rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib/main' 
     includeRootFolder: true 
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
