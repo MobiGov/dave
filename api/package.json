@@ -22,7 +22,8 @@
     "@babel/preset-typescript": "^7.9.0",
     "babel-loader": "^8.1.0",
     "snowpack": "^2.0.2",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "tslib": "2.0.0"
   },
   "dependencies": {}
 }
