@@ -61,5 +61,5 @@ steps:
   inputs:
     azureSubscription: '$(SubscriptionConnection)'
     appType: 'functionAppLinux'
-    appName: 'mobigov-dave'
+    appName: 'meka'
     package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
