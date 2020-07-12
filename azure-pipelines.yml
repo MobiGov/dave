@@ -53,7 +53,8 @@ steps:
     resourceGroupName: mobigov-dave
     location: 'East US'
     templateLocation: 'Linked artifact'
-    csmFile: "$(Build.SourcesDirectory)/ArmTemplates/FunctionTemplates/Meka/template.json"
+    csmFile: '$(Build.SourcesDirectory)/ArmTemplates/FunctionTemplates/Meka/template.json'
+    csmParametersFile: '$(Build.SourcesDirectory)/ArmTemplates/FunctionTemplates/Meka/parameters.json'
     deploymentMode: 'Incremental'
     deploymentOutputs: meka_function_arm
 - task: AzureFunctionApp@1
