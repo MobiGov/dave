@@ -14,21 +14,21 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: |
-    echo Listing Dirs.
-    dir
-  displayName: 'List folders'
-
 - task: Npm@1
+  name: 'NPMInstall'
   inputs:
     command: 'install'
     workingDir: 'api'
     verbose: true
 - task: Npm@1
+  name: 'NPMBuild'
   inputs:
     command: 'custom'
     customCommand: 'run-script build'
     workingDir: 'api'
+- script: |
+    echo Listing Dirs.
+    dir '$(Build.SourcesDirectory)/api/lib'
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib' 
