@@ -22,9 +22,13 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "babel-loader": "^8.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "snowpack": "^2.0.2",
-    "typescript": "^3.9.3",
-    "tslib": "2.0.0"
+    "tslib": "2.0.0",
+    "typescript": "^3.9.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "regenerator-runtime": "^0.13.5"
+  }
 }
