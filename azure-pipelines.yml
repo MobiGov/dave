@@ -26,13 +26,6 @@ steps:
     command: 'custom'
     customCommand: 'run-script build'
     workingDir: 'api'
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.SourcesDirectory)/api/lib/main' 
-    includeRootFolder: true 
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip' 
-    replaceExistingArchive: true
 - task: AzureResourceGroupDeployment@2
   inputs:
     ConnectedServiceName: '$(SubscriptionConnection)'
@@ -59,4 +52,4 @@ steps:
     azureSubscription: '$(SubscriptionConnection)'
     appType: 'functionAppLinux'
     appName: 'meka'
-    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    package: '$(Build.SourcesDirectory)/api/lib/main'
