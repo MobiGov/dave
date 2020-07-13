@@ -1,7 +1,7 @@
 import { AzureFunction, HttpRequest, Context } from "@azure/functions";
 import { Response } from "./types/az-function";
 import "regenerator-runtime/runtime";
-import "core-js/stable";
+import "core-js/es/array";
 
 const httpTrigger: AzureFunction = async function(context: Context, req: HttpRequest): Promise<Response> {
     context.log('TypeScript HTTP trigger function processed a request.');
