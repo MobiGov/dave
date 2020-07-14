@@ -3,7 +3,7 @@
       [
         "@babel/preset-env",
         {
-          "useBuiltIns": "entry", // alternative mode: "entry"
+          "useBuiltIns": "usage", // alternative mode: "entry"
           "corejs": 3, // default would be 2
           "targets": {"esmodules": true}
           // set your own target environment here (see Browserslist)
