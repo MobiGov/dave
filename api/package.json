@@ -7,9 +7,8 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "build": "npm run build:main",
-    "build:main": "npm run build:types_main && npm run build:js_main",
+    "build:main": "npm run build:types_main",
     "build:types_main": "tsc main/index.ts --outDir main --module CommonJS --target es2017 --moduleResolution node",
-    "build:js_main": "babel main --out-dir lib/main --ignore '**/*.ts' --copy-files",
     "pack": "echo \"Test\"; && exit 1"
   },
   "author": "david.daniel",
