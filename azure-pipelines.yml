@@ -30,7 +30,7 @@ steps:
   name: 'CopyMain'
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)/api/node_modules/core-js'
-    targetFolder: '$(Build.SourcesDirectory)/api/lib/main' 
+    targetFolder: '$(Build.SourcesDirectory)/api/lib/main/core-js' 
 - task: ArchiveFiles@2
   name: 'ArchiveMain'
   inputs:
