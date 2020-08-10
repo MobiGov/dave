@@ -1,11 +1,14 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
             "type": "string"
         },
         "name": {
+            "type": "string"
+        },
+        "identity": {
             "type": "string"
         },
         "location": {
@@ -19,9 +22,6 @@
         },
         "serverFarmResourceGroup": {
             "type": "string"
-        },
-        "alwaysOn": {
-            "type": "bool"
         },
         "storageAccountName": {
             "type": "string"
@@ -49,7 +49,6 @@
             "type": "Microsoft.Web/sites",
             "kind": "functionapp",
             "location": "[parameters('location')]",
-            "tags": null,
             "dependsOn": [
                 "microsoft.insights/components/meka",
                 "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
@@ -123,7 +122,6 @@
             "name": "meka",
             "type": "microsoft.insights/components",
             "location": "eastus",
-            "tags": null,
             "properties": {
                 "ApplicationId": "[parameters('name')]",
                 "Request_Source": "IbizaWebAppExtensionCreate"
@@ -134,13 +132,47 @@
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[parameters('storageAccountName')]",
             "location": "[parameters('location')]",
-            "tags": null,
             "sku": {
                 "name": "Standard_LRS"
             },
             "properties": {
                 "supportsHttpsTrafficOnly": true
             }
+        },
+        {
+            "type": "Microsoft.Resources/deploymentScripts",
+            "apiVersion": "2019-10-01-preview",
+            "name": "runPowerShellInlineWithOutput",
+            "location": "[resourceGroup().location]",
+            "kind": "AzurePowerShell",
+            "identity": {
+                "type": "userAssigned",
+                "userAssignedIdentities": {
+                    "[parameters('identity')]": {
+                    }
+                }
+            },
+            "properties": {
+                "forceUpdateTag": 1,
+                "azPowerShellVersion": "3.0",
+                "scriptContent": "
+                param([string] $name)
+                $output = \"Hello {0}\" -f $name
+                Write-Output $output
+                $DeploymentScriptOutputs = @{}
+                $DeploymentScriptOutputs['text'] = $output
+                ",
+                "arguments": "[concat('-name', ' ', parameters('name'))]",
+                "timeout": "PT1H",
+                "cleanupPreference": "OnSuccess",
+                "retentionInterval": "P1D"
+            }
         }
-    ]
+    ],
+    "outputs": {
+        "result": {
+            "value": "[reference('runPowerShellInlineWithOutput').outputs.text]",
+            "type": "string"
+        }
+    }
 }

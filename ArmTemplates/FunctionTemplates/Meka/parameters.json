@@ -8,6 +8,9 @@
         "name": {
             "value": "meka"
         },
+        "identity": {
+            "value": "/subscriptions/8bd08567-bbbb-4982-b6d8-bcb1b2ff69dd/resourceGroups/mobigov-dave/providers/Microsoft.ManagedIdentity/userAssignedIdentities/DeploymentIdentity"
+        },
         "location": {
             "value": "East US"
         },
@@ -19,9 +22,6 @@
         },
         "serverFarmResourceGroup": {
             "value": "mobigov-dave"
-        },
-        "alwaysOn": {
-            "value": false
         },
         "storageAccountName": {
             "value": "storageaccountmobigb553"
