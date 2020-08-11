@@ -24,7 +24,13 @@
             "value": "mobigov-dave"
         },
         "storageAccountName": {
-            "value": "storageaccountmobigb553"
+            "value": "storageaccountmeka"
+        },
+        "containerGroupName": {
+            "value": "containerWebGroup"
+        },
+        "containerName": {
+            "value": "containerWeb"
         },
         "sku": {
             "value": "Dynamic"

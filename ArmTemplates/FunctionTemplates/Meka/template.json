@@ -26,6 +26,12 @@
         "storageAccountName": {
             "type": "string"
         },
+        "containerGroupName": {
+            "type": "string"
+        },
+        "containerName": {
+            "type": "string"
+        },
         "sku": {
             "type": "string"
         },
@@ -41,6 +47,10 @@
         "numberOfWorkers": {
             "type": "string"
         }
+    },
+    "variables": {
+        "cpuCores": "1.0",
+        "memoryInGb": "1.5"
     },
     "resources": [
         {
@@ -140,6 +150,53 @@
             },
             "properties": {
                 "supportsHttpsTrafficOnly": true
+            }
+        },
+        {
+            "name": "[parameters('containerGroupName')]",
+            "type": "Microsoft.ContainerInstance/containerGroups",
+            "apiVersion": "2018-02-01-preview",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]"
+            ],
+            "properties": {
+                "containers": [
+                    {
+                        "name": "[parameters('containerName')]",
+                        "properties": {
+                            "volumeMounts": [
+                                {
+                                    "name": "content",
+                                    "mountPath": "/mnt/content"
+                                }
+                            ],
+                            "environmentVariables": [
+                                {
+                                    "name": "AZURE_STORAGE_KEY",
+                                    "value": "[listKeys(parameters('storageAccountName'),'2017-10-01').keys[0].value]"
+                                },
+                                {
+                                    "name": "AZURE_STORAGE_ACCOUNT",
+                                    "value": "[parameters('storageAccountName')]"
+                                }
+                            ],
+                            "resources": {
+                                "requests": {
+                                    "cpu": "[variables('cpuCores')]",
+                                    "memoryInGb": "[variables('memoryInGb')]"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "restartPolicy": "Never",
+                "osType": "Linux",
+                "volumes": [
+                    {
+                        "name": "content"
+                    }
+                ]
             }
         },
         {
