@@ -165,12 +165,6 @@
                     {
                         "name": "[parameters('containerName')]",
                         "properties": {
-                            "volumeMounts": [
-                                {
-                                    "name": "content",
-                                    "mountPath": "/mnt/content"
-                                }
-                            ],
                             "environmentVariables": [
                                 {
                                     "name": "AZURE_STORAGE_KEY",
@@ -190,14 +184,7 @@
                         }
                     }
                 ],
-                "restartPolicy": "Never",
-                "osType": "Linux",
-                "volumes": [
-                    {
-                        "name": "content",
-                        "emptyDir": {}
-                    }
-                ]
+                "restartPolicy": "Never"
             }
         },
         {
