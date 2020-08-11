@@ -194,7 +194,8 @@
                 "osType": "Linux",
                 "volumes": [
                     {
-                        "name": "content"
+                        "name": "content",
+                        "emptyDir": {}
                     }
                 ]
             }
